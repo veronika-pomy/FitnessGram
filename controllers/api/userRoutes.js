@@ -1,16 +1,20 @@
 const router = require('express').Router();
+// const { User } = require('../../models');
 
+// Log in route
 
+// Sign up route
 
-
-router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
+// Log out route 
+router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
-      res.redirect('/profile');
-      return;
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
     }
-  
-    res.render('login');
   });
-  
+
+
 module.exports = router;
