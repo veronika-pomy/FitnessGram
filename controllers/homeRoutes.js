@@ -2,7 +2,9 @@ const router = require('express').Router();
 // User, post, comment models
 const withAuth = require('../utils/auth');
 
+// Add with Auth to all routes
 
+// route to see other users' posts
 router.get('/', async (req, res) => {
     try {
       // GET all posts and JOIN with user data
@@ -25,15 +27,15 @@ router.get('/', async (req, res) => {
 
 // route to get a specifc user's profile
 
-// route to get a specifc post
-  router.get('/post/:id', async (req, res) => {
-    try {
+// route to get a specifc post and comments on it
+//   router.get('/post/:id', async (req, res) => {
+//     try {
     
 
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
 
 // route to leave a comment 
 
@@ -49,6 +51,4 @@ router.get('/login', (req, res) => {
     res.render('login');
   });
   
-
-
 module.exports = router;
