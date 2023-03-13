@@ -4,6 +4,9 @@ const withAuth = require('../utils/auth');
 
 // Add with Auth to all routes
 
+// route to get all my posts and see comments and likes 
+
+
 // route to see other users' posts
 router.get('/', async (req, res) => {
     try {
