@@ -11,14 +11,17 @@ Posts.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    //actual post itself
     post_content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    //date post was made
     post_date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
+    //post type- workout
     is_workout: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
