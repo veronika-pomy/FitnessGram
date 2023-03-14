@@ -139,7 +139,7 @@ router.get('/login', (req, res) => {
       return;
     }
   
-    res.render('login'); // signup
+    res.render('signup'); 
 });
   
 module.exports = router;
