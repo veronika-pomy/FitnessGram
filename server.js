@@ -4,7 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 
 const routes = require('./controllers');
-// const helpers = require('./utils/helpers');
+const helper = require('./utils/helper'); // date_format
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -29,8 +29,7 @@ const PORT = process.env.PORT || 3001;
   
 // app.use(session(sess));
 
-const hbs = exphbs.create({});
-// export helper utils to handlebars when done e.g. for date formatting
+const hbs = exphbs.create({helper});
 
 // set up hbs engine
 app.engine('handlebars', hbs.engine);
@@ -38,10 +37,10 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, 'public'))); add this when pub foler with front-end css and js is added
+app.use(express.static(path.join(__dirname, 'public')));
 
 // connect to api routes
-app.use(routes);
+// app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App running on port ${PORT}`));
