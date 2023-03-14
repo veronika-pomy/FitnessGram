@@ -1,6 +1,6 @@
 const { User } = require('../models');
 
-const postData = [
+const userData = [
   {
     username: 'runner56',
     email: 'runningislife@yahoo.com',
