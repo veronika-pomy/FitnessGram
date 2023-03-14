@@ -7,7 +7,7 @@ const routes = require('./controllers');
 const helper = require('./utils/helper'); // date_format
 
 const sequelize = require('./config/connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // const sess = {
 //     secret: 'Super secret secret',
 //     cookie: {
-//       maxAge: 24 * 60 * 60 * 1000, / 1 day
+//       maxAge: 24 * 60 * 60 * 1000, // 1 day
 //       httpOnly: true,
 //       secure: false,
 //       sameSite: 'strict',
@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 3001;
 //       db: sequelize
 //     })
 //   };
-  
+
 // app.use(session(sess));
 
 const hbs = exphbs.create({helper});
