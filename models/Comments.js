@@ -12,7 +12,7 @@ Comments.init(
       autoIncrement: true,
     },
     //the comment
-    comment_content: {
+    comment_text: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -42,7 +42,7 @@ Comments.init(
       sequelize,
       freezeTableName: true,
       underscored: true,
-      modelName: 'commments'
+      modelName: 'comment'
     }
 );
 
