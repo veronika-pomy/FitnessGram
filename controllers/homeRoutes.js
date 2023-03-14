@@ -1,57 +1,145 @@
 const router = require('express').Router();
-// User, post, comment models
+const { User, Posts, Comments } = require('../models');
 const withAuth = require('../utils/auth');
+// Add withAuth to all routes
 
-// Add with Auth to all routes
-
-// route to get all my posts and see comments and likes 
-
-
-// route to see other users' posts
+// GET all users' posts with comments on them
 router.get('/', async (req, res) => {
-    try {
-      // GET all posts and JOIN with user data
-      // const postData = 
-  
-      // Serialize data for template to read
-     //  const posts = posttData.map((post) => post.get({ plain: true }));
-  
-    // Pass serialized data and session flag into template
-    //   res.render('    ', { 
-    //     posts, 
-    //     logged_in: req.session.logged_in 
-    //   });
-
-    } catch (err) {
-      res.status(500).json(err);
-    }
-
+  try {
+    const postData = await Posts.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ['username'],
+      },
+      {
+        model: Comments,
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          }, 
+        ], 
+      },
+    ],
   });
 
-// route to get a specifc user's profile
+  const posts = postData.map((post) => post.get({ plain: true }));
 
-// route to get a specifc post and comments on it
-//   router.get('/post/:id', async (req, res) => {
-//     try {
-    
+  console.log(posts);
 
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
+  res.render('homepage', {
+    posts,
+    loggedIn: req.session.loggedIn,
+  });
 
-// route to leave a comment 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
-// route to like a post
+// GET logged in users' posts with comments on them
+router.get('/profile', async (req, res) => {
+  try {
+    const userCurrentData = await User.findByPk(req.session.user_id, {
+      attributes: {
+        exclude: ['password', 
+                  'id', 
+                  'email']},
+        include: [
+          { 
+            model: Posts,
+             include : [
+              { model: Comments,
+                include: [
+                  {
+                    model: User,
+                    attributes: ['username'],
+                  }, 
+                ], 
+              }
+            ],
+          }],
+        });
+
+    const userCurrent = userCurrentData.get({ plain: true });
+
+    console.log(userCurrent);
+
+    res.render('profile', {
+      userCurrent,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET a specifc user's profile with posts and comments on them
+// Not sure about this one
+router.get('/user/:id', async (req, res) => {
+  try {
+    const userProfile = await User.findByPk(req.session.user_id, {
+
+    });
+
+    const userProfileData = userProfile.get({plain: true });
+
+    console.log(userProfileData);
+
+    res.render('user', {
+      userProfileData,
+      loggedIn: req.session.loggedIn,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET a specifc post and comments on it
+router.get('/post/:id', async (req, res) => {
+  try {
+      const postData = await Posts.findByPk(req.params.id, {
+          include: [
+            {
+              model: Comments,
+              include: [
+                {
+                  model: User,
+                  attributes: ['username'],
+                },
+              ],
+            },
+            {
+              model: User,
+              attributes: ['username'],
+            },
+          ],
+      });
+
+      const post = postData.get({ plain: true });
+
+      console.log(post);
+
+      res.render('post', { post, loggedIn: req.session.loggedIn });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
-      res.redirect('/'); // redirect to 'home' or 'dashboard' route 
+      res.redirect('/');
       return;
     }
   
-    res.render('login');
-  });
+    res.render('login'); // signup
+});
   
 module.exports = router;
