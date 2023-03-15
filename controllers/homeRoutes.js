@@ -78,14 +78,11 @@ router.get('/profile', async (req, res) => {
 });
 
 // GET a specifc user's profile with posts and comments on them
-// Not sure about this one
 router.get('/user/:id', async (req, res) => {
   try {
-    const userProfile = await User.findByPk(req.session.user_id, {
+    const userProfile = await User.findByPk(req.params.id);
 
-    });
-
-    const userProfileData = userProfile.get({plain: true });
+    const userProfileData = userProfile.get({ plain: true });
 
     console.log(userProfileData);
 

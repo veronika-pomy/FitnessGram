@@ -1,15 +1,99 @@
 const router = require('express').Router();
-// User, Post, Comments model 
+const { User, Posts, Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
+// Add withAuth to all routes
 
-// route to create a new post
+// Will need to check routes and path varibales //
 
-// route to update own post
+// POST a new post
+router.post('/', async (req, res) => {
+  try { 
+    const newPost = await Posts.create({
+        post_content: req.body.post_content,
+        post_date: new Date(),
+        user_id: req.body.user_id, // replace with req.session
+        // add is_workout variable ?? 
+  });
+  
+  res.status(200).json(newPost);
 
-// route to delete own post
+  } catch (err) {
+    console.error(err);
+    res.status(400).json(err);
+  }
+});
 
-// route to leave a comment on someone's post
+// POST a new comment under specific post
+router.post('/post/:id', async (req, res) => {
+    try {
+      const newComment = await Comments.create({
+        comment_text: req.body.comment_text,
+        comment_date: new Date(),
+        post_id: req.params.id,
+        user_id: req.body.user_id, // replace with req.session
+      });
+  
+      res.status(200).json(newComment);
+    } catch (err) {
+      console.error(err);
+      res.status(400).json(err);
+    }
+});
 
-// route to like a post
+// route to check workout field - ???
+// will need js function to check if it checked - 1, not checked 0
+
+// PUT to update own post
+router.put('/post/:id', async (req, res) => {
+  try {
+    const updatePostData = await Posts.update(
+      req.body, // check on this
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    
+    if (!updatePostData) {
+      res.status(404).json({ message: 'No post with this id.' });
+      return;
+    }
+
+    res.status(200).json(updatePostData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+// DELETE own post
+router.delete('/post/:id', async (req, res) => {
+    try {
+      const postData = await Posts.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+  
+      if (!postData) {
+        res.status(404).json({ message: 'No post with this id.' });
+        return;
+      }
+  
+      res.status(200).json(postData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+});
+
+//                                                       //
+// ADDITIONAL if have time                               //
+//                                                       //
+// PUT to like someone's post -- will need extra col     //
+// PUT to like someone's comment -- will need extra col  //
+// PUT to edit own comment under someone's post          //
+//                                                       //      
 
 module.exports = router;
