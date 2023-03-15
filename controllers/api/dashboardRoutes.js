@@ -11,8 +11,9 @@ router.post('/', async (req, res) => {
     const newPost = await Posts.create({
         post_content: req.body.post_content,
         post_date: new Date(),
-        user_id: req.body.user_id, // replace with req.session
-        // add is_workout variable ?? 
+        user_id: req.session.user_id, // replace with req.body to check in insomnia
+        // add is_workout variable - checkbox
+        // add calories variable
   });
   
   res.status(200).json(newPost);
@@ -30,7 +31,7 @@ router.post('/post/:id', async (req, res) => {
         comment_text: req.body.comment_text,
         comment_date: new Date(),
         post_id: req.params.id,
-        user_id: req.body.user_id, // replace with req.session
+        user_id: req.session.user_id, // replace with req.body to check in insomnia
       });
   
       res.status(200).json(newComment);
