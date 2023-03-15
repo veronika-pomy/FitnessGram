@@ -12,10 +12,23 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect login information, please try again.' });
       return;
     }
+    
+    // replace with this when password encryption is added
+    // const validPassword = await userData.checkPassword(req.body.password);
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    var validPassword;
+    
+    async function checkPassword () {
+      if (userData.password === req.body.password) {
+        validPassword = true;
+      } else {
+        validPassword = false;
+      }
+    }
 
-    if (!validPassword) {
+    await checkPassword ();
+
+    if (validPassword === false) {
       res
         .status(400)
         .json({ message: 'Incorrect login information, please try again.' });
