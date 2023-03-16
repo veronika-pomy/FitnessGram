@@ -3,8 +3,6 @@ const { User, Posts, Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
 // Add withAuth to all routes
 
-// Will need to check routes and path varibales //
-
 // POST a new post
 router.post('/', async (req, res) => {
   try { 
@@ -12,8 +10,8 @@ router.post('/', async (req, res) => {
         post_content: req.body.post_content,
         post_date: new Date(),
         user_id: req.session.user_id, // replace with req.body to check in insomnia
-        // add is_workout variable - checkbox
-        // add calories variable
+        is_workout: req.body.is_workout,
+        // add calories
   });
   
   res.status(200).json(newPost);
