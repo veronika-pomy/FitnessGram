@@ -28,5 +28,5 @@ const postData = [
 ];
 
 const seedPost = () => Posts.bulkCreate(postData);
-//random
+
 module.exports = seedPost;

@@ -7,13 +7,14 @@ const createPostButtonHandler = async (event) => {
     // need to figure out how it will work with a checkbox, right now probably defaults to 0
     // const calories = document.querySelector('#post-calories').value.trim();
 
-    if (title && content) {
+    // test that only posts when content is provided
+    if (post_content) {
         const response = await fetch(`/api/dashboard`, {
         method: 'POST',
-        body: JSON.stringify({ post_content, is_workout, calories }),
+        body: JSON.stringify({post_content}), // to add: is_workout, calories 
         headers: {
-            'Content-Type': 'application/json',
-        },
+                'Content-Type': 'application/json',
+            },
         });
 
         if (response.ok) {
@@ -32,19 +33,22 @@ const createCommentButtonHandler = async (event) => {
     const locationArr = location.pathname.split('/');
     const postId = locationArr[locationArr - 1];
 
-    const response = await fetch('/api/dashboard/post/' + postId , {
-        method: 'POST',
-        body: JSON.stringify({comment_text}),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    if (response.ok) {
-        document.location.reload();
-    } else {
-        alert('Could not leave a comment. Please try again!');
-    };
+    // test that only posts when content is provided
+    if (comment_text) {
+        const response = await fetch('/api/dashboard/post/' + postId , {
+            method: 'POST',
+            body: JSON.stringify({comment_text}),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert('Could not leave a comment. Please try again!');
+        };
+    }
 };
 
 // fetch PUT to update post
@@ -55,22 +59,25 @@ async function updatePostButtonHandler (event) {
         const id = event.target.getAttribute('data-id');
         const update = document.querySelector(`#post-content-update-${id}`).value.trim(); // this is probably id from the db
 
-        const response = await fetch(`/api/dashboard/post/${id}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    'post_content': update,
-                }
-            )
-        });
-
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert('Could not update post. Please try again!');
+        // test that only posts when content is provided
+        if (update) {
+            const response = await fetch(`/api/dashboard/post/${id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        'post_content': update,
+                    }
+                )
+            });
+    
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert('Could not update post. Please try again!');
+            }
         }
     }
 };
@@ -102,10 +109,8 @@ document
   .querySelector('.form-comment-btn') // refer to views
   .addEventListener('submit', createCommentButtonHandler);
 
-// handler for update post btn
+// handler for update post btn - may need this
 
-// handler for delete post btn
-
-// write a handler for checking working out box
+// handler for delete post btn - may need this
 
 // if have time - write handler for liking post
