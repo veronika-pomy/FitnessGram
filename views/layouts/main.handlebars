@@ -5,6 +5,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wellness App</title>
-  <link rel="stylesheet" type="text/css" href="/css/jass.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="./jass.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
+<body> 
+    <nav>
+      <!-- conditionally renders login or logout links -->
+        {{#if logged_in}}
+        <a href="/profile">profile</a>
+        <button class="no-button" id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+    </nav>
+    </header>
+    <main class="container container-fluid mt-5">
+    <!-- render sub layout -->
+    {{{body}}}
+    </main>
+    <footer>
+
+    </footer>
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</body>
+
+</html>
