@@ -38,6 +38,10 @@ WHEN I track my activity on the app\*\* - add here
 
 THEN I can add graphs to my profile\*\* - add here
 
+WHEN I choose to log out
+
+THEN I can no longer view app content and have to log back in to access it
+
 ---
 
 ## Table of Contents
