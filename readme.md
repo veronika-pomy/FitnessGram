@@ -1,4 +1,4 @@
-# Wellness App
+# FitnessGram
 
 ## Description
 
@@ -101,6 +101,7 @@ This list includes resources used for the project.
 
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
 - [Best README Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
+- [Chart.js](https://www.npmjs.com/package/chart.js?activeTab=readme)
 - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
 - [Express](https://expressjs.com/)
 - [express-session](https://www.npmjs.com/package/express-session)
@@ -110,9 +111,4 @@ This list includes resources used for the project.
 - [MySQL](https://www.mysql.com/)
 - [Sequelize](https://sequelize.org/)
 
-TO ADD:
-
-- chart js
-- Anything else ?
-
-<p align="right">(<a href="#wellness-app">BACK TO TOP</a>)</p>
+<p align="right">(<a href="#fitnessgram">BACK TO TOP</a>)</p>

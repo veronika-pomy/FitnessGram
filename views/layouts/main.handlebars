@@ -11,16 +11,17 @@
 <body> 
     <nav>
       <!-- conditionally renders login or logout links -->
-        {{#if logged_in}}
+        {{#if loggedIn}}
         <a href="/profile">profile</a>
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/login">login</a>
+        {{/if}}
     </nav>
     </header>
     <main class="container container-fluid mt-5">
     <!-- render sub layout -->
-    {{{body}}}
+      {{{body}}}
     </main>
     <footer>
 
