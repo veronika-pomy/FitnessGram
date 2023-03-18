@@ -26,8 +26,6 @@ router.get('/', async (req, res) => {
 
   const posts = postData.map((post) => post.get({ plain: true }));
 
-  console.log(posts);
-
   res.render('homepage', {
     posts,
     loggedIn: req.session.loggedIn,
@@ -42,9 +40,8 @@ router.get('/', async (req, res) => {
 // GET logged in users' posts with comments on them
 router.get('/profile', async (req, res) => {
   try {
-    console.log(req.session.user_id);
-    const userCurrentData = await User.findByPk(req.session.user_id, {
-  attributes: {
+  const userCurrentData = await User.findByPk(req.session.user_id, {
+    attributes: {
         exclude: ['password']
       },
         include: [
@@ -65,8 +62,6 @@ router.get('/profile', async (req, res) => {
 
     const user = userCurrentData.get({ plain: true });
 
-    console.log(user);
-
     res.render('profile', {
       user,
       loggedIn: req.session.loggedIn,
@@ -74,6 +69,23 @@ router.get('/profile', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
+  }
+});
+
+// POST a new post on own profile
+router.post('/profile', async (req, res) => {
+  try { 
+    const newPost = await Posts.create({
+        post_content: req.body.post_content,
+        post_date: new Date(),
+        user_id: req.session.user_id, 
+  });
+  
+  res.status(200).json(newPost);
+
+  } catch (err) {
+    console.error(err);
+    res.status(400).json(err);
   }
 });
 
@@ -101,8 +113,6 @@ router.get('/user/:id', async (req, res) => {
   });
 
     const user = userProfile.get({ plain: true });
-
-    console.log(user);
 
     res.render('user', {
       user,
@@ -137,8 +147,6 @@ router.get('/post/:id', async (req, res) => {
       });
 
       const post = postData.get({ plain: true });
-
-      console.log(post);
 
       res.render('post', { post, loggedIn: req.session.loggedIn });
 

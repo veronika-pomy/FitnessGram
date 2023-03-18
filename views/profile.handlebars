@@ -1,3 +1,15 @@
+{{!-- Form to ceate a new post --}}
+<section class="create-post">
+    <form class="form-post">
+      <div class="div-post">
+        <textarea rows = "5" cols = "50" class="form-input-post" type="text" id="post-content" name="post-content" placeholder="Write your post here"></textarea>
+      </div>
+      <div class="div-post-btn">
+        <button id="btn-post">Create my post</button>
+      </div>
+    </form>
+</section>
+
 {{!-- This renders logged in user's posts and comments on the posts --}}
 <div class="row">
     <div class="col-auto profile-username">
@@ -12,7 +24,8 @@
             <a class="post-link" href="/post/{{id}}">
                 <p class="date-posted-post-user-profile">{{format_date post_date}}</p> 
                 <p class="content-post-user-profile">{{post_content}}</p>
-        </a>
+            </a>
+            <button class="btn-delete" data-id="{{id}}" onclick ="deletePostButtonHandler (event)">Delete</button>
         </section>
 
         <section class="comments-container-user-profile">
@@ -20,13 +33,9 @@
                 {{> comment-details}}
             {{/each}}
         </section>
-
     </div>
 {{/each}}
 
 </div>
 
-{{!-- Section to create a new post goes here --}}
-
-{{!-- Add delete post feature
-If have time - add update post feature  --}}
+<script src="/js/dashboard.js"></script>
