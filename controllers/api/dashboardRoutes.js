@@ -9,9 +9,9 @@ router.post('/', async (req, res) => {
     const newPost = await Posts.create({
         post_content: req.body.post_content,
         post_date: new Date(),
-        user_id: req.session.user_id, // replace with req.body to check in insomnia
+        user_id: req.session.user_id, 
         is_workout: req.body.is_workout,
-        // add calories
+        
   });
   
   res.status(200).json(newPost);
@@ -22,6 +22,8 @@ router.post('/', async (req, res) => {
   }
 });
 
+// POST calories 
+
 // POST a new comment under specific post
 router.post('/post/:id', async (req, res) => {
     try {
@@ -29,7 +31,7 @@ router.post('/post/:id', async (req, res) => {
         comment_text: req.body.comment_text,
         comment_date: new Date(),
         post_id: req.params.id,
-        user_id: req.session.user_id, // replace with req.body to check in insomnia
+        user_id: req.session.user_id, 
       });
   
       res.status(200).json(newComment);
@@ -39,14 +41,11 @@ router.post('/post/:id', async (req, res) => {
     }
 });
 
-// route to check workout field - ???
-// will need js function to check if it checked - 1, not checked 0
-
 // PUT to update own post
 router.put('/post/:id', async (req, res) => {
   try {
     const updatePostData = await Posts.update(
-      req.body, // check on this
+      req.body, 
       {
         where: {
           id: req.params.id,
@@ -86,13 +85,5 @@ router.delete('/post/:id', async (req, res) => {
       res.status(500).json(err);
     }
 });
-
-//                                                       //
-// ADDITIONAL if have time                               //
-//                                                       //
-// PUT to like someone's post -- will need extra col     //
-// PUT to like someone's comment -- will need extra col  //
-// PUT to edit own comment under someone's post          //
-//                                                       //      
 
 module.exports = router;

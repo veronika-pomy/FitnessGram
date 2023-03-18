@@ -42,11 +42,11 @@ router.get('/', async (req, res) => {
 // GET logged in users' posts with comments on them
 router.get('/profile', async (req, res) => {
   try {
+    console.log(req.session.user_id);
     const userCurrentData = await User.findByPk(req.session.user_id, {
-      attributes: {
-        exclude: ['password', 
-                  'id', 
-                  'email']},
+  attributes: {
+        exclude: ['password']
+      },
         include: [
           { 
             model: Posts,
@@ -61,14 +61,14 @@ router.get('/profile', async (req, res) => {
               }
             ],
           }],
-        });
+    });
 
-    const userCurrent = userCurrentData.get({ plain: true });
+    const user = userCurrentData.get({ plain: true });
 
-    console.log(userCurrent);
+    console.log(user);
 
     res.render('profile', {
-      userCurrent,
+      user,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -80,14 +80,32 @@ router.get('/profile', async (req, res) => {
 // GET a specifc user's profile with posts and comments on them
 router.get('/user/:id', async (req, res) => {
   try {
-    const userProfile = await User.findByPk(req.params.id);
+    const userProfile = await User.findByPk(req.params.id, {
+      attributes: {
+            exclude: ['password']
+          },
+            include: [
+              { 
+                model: Posts,
+                 include : [
+                  { model: Comments,
+                    include: [
+                      {
+                        model: User,
+                        attributes: ['username'],
+                      }, 
+                    ], 
+                  }
+                ],
+              }]
+  });
 
-    const userProfileData = userProfile.get({ plain: true });
+    const user = userProfile.get({ plain: true });
 
-    console.log(userProfileData);
+    console.log(user);
 
     res.render('user', {
-      userProfileData,
+      user,
       loggedIn: req.session.loggedIn,
     });
 
@@ -113,7 +131,7 @@ router.get('/post/:id', async (req, res) => {
             },
             {
               model: User,
-              attributes: ['username'],
+              attributes: ['username', 'id'],
             },
           ],
       });
