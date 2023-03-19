@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const { User, Posts, Comments } = require('../models');
 const withAuth = require('../utils/auth');
-// Add withAuth to all routes
 
 // GET all users' posts with comments on them
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const postData = await Posts.findAll({
     order: [
@@ -41,7 +40,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET logged in users' posts with comments on them
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
   const userCurrentData = await User.findByPk(req.session.user_id, {
     attributes: {
@@ -81,7 +80,7 @@ router.get('/profile', async (req, res) => {
 });
 
 // POST a new post on own profile
-router.post('/profile', async (req, res) => {
+router.post('/profile', withAuth, async (req, res) => {
   try { 
     const newPost = await Posts.create({
         post_content: req.body.post_content,
@@ -98,7 +97,7 @@ router.post('/profile', async (req, res) => {
 });
 
 // GET a specifc user's profile with posts and comments on them
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:id', withAuth, async (req, res) => {
   try {
     const userProfile = await User.findByPk(req.params.id, {
       attributes: {
@@ -134,7 +133,7 @@ router.get('/user/:id', async (req, res) => {
 });
 
 // GET a specifc post and comments on it
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
       const postData = await Posts.findByPk(req.params.id, {
           include: [

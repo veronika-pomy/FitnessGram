@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const { User, Posts, Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
-// Add withAuth to all routes
 
 // POST calories 
 
 // POST a new comment under specific post
-router.post('/post/:id', async (req, res) => {
+router.post('/post/:id', withAuth, async (req, res) => {
     try {
       const newComment = await Comments.create({
         comment_text: req.body.comment_text,
@@ -23,7 +22,7 @@ router.post('/post/:id', async (req, res) => {
 });
 
 // DELETE own post
-router.delete('/post/:id', async (req, res) => {
+router.delete('/post/:id', withAuth, async (req, res) => {
     try {
       const postData = await Posts.destroy({
         where: {

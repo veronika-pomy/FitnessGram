@@ -70,7 +70,7 @@ THEN I can no longer view app content and have to log back in to access it
 
 This screenshot demonstrates the view of the signup/login page.
 
-![insert link]()
+![insert link](./public/media/signup.png)
 
 This screenshot demonstrates the view of the homepage when a user is logged in.
 
