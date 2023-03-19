@@ -7,6 +7,9 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const postData = await Posts.findAll({
+    order: [
+        ['post_date', 'DESC'],
+      ],
     include: [
       {
         model: User,
@@ -47,7 +50,7 @@ router.get('/profile', async (req, res) => {
         include: [
           { 
             model: Posts,
-             include : [
+            include : [
               { model: Comments,
                 include: [
                   {
@@ -58,9 +61,14 @@ router.get('/profile', async (req, res) => {
               }
             ],
           }],
+          order: [  
+            [ { model: Posts, as: 'posts' }, 'post_date', 'DESC'], 
+          ]
     });
 
     const user = userCurrentData.get({ plain: true });
+
+    console.log(user);
 
     res.render('profile', {
       user,
