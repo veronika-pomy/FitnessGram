@@ -1,0 +1,18 @@
+<div class="single-post-div">
+    <section class="post-container">
+        <a class="post-link" href="/user/{{post.user.id}}">
+            <h4 class="user-name-post">By {{post.user.username}}</h4>
+        </a>
+            <p class="date-posted-post">{{format_date post.post_date}}</p> 
+            <p class="content-post">{{post.post_content}}</p>
+        </a>
+    </section>
+
+    <section class="comments-container-user-profile">
+                {{#each post.comments as |comment|}}
+                    {{> comment-details}}
+                {{/each}}
+    </section>
+<div>
+
+{{!-- Section to add a comment to a ppst goes here  --}}
