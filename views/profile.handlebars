@@ -1,41 +1,47 @@
-{{!-- Form to ceate a new post --}}
-<section class="create-post">
-    <form class="form-post">
-      <div class="div-post">
-        <textarea rows = "5" cols = "50" class="form-input-post" type="text" id="post-content" name="post-content" placeholder="Write your post here"></textarea>
-      </div>
-      <div class="div-post-btn">
-        <button id="btn-post">Create my post</button>
-      </div>
-    </form>
-</section>
+<section class="main-profile-container">
 
-{{!-- This renders logged in user's posts and comments on the posts --}}
-<div class="row">
-    <div class="col-auto profile-username">
-        <h2>{{user.username}}</h2>
-</div>
-
-{{!-- Space for the chart --}}
-
-{{#each user.posts as |post|}}
-    <div class="row align-center mb-5">
-        <section class="post-container-user-profile">
-            <a class="post-link" href="/post/{{id}}">
-                <p class="date-posted-post-user-profile">{{format_date post_date}}</p> 
-                <p class="content-post-user-profile">{{post_content}}</p>
-            </a>
-            <button class="btn-delete" data-id="{{id}}" onclick ="deletePostButtonHandler (event)">Delete</button>
-        </section>
-
-        <section class="comments-container-user-profile">
-            {{#each post.comments as |comment|}}
-                {{> comment-details}}
-            {{/each}}
-        </section>
+    {{!-- This renders logged in user's posts and comments on the posts --}}
+    <div class="row name-section">
+        <div class="col-auto profile-username">
+            <h2 class="profile-user-name">{{user.username}}</h2>
+        </div>
     </div>
-{{/each}}
 
-</div>
+    {{!-- Space for the chart --}}
+    
+    <div class="post-comment-container">
+        {{!-- Form to ceate a new post --}}
+        <section class="create-post">
+            <form class="form-post form-floating">
+            <div class="div-post">
+                <textarea rows = "5" cols = "50" class="form-input-post form-control" id="floatingTextarea2" type="text" name="post-content" placeholder="Write your post here"></textarea>
+            </div>
+            <div class="div-post-btn">
+                <button type="button" class="btn btn-dark" id="btn-post">Create my post</button>
+            </div>
+            </form>
+        </section>
+
+        {{#each user.posts as |post|}}
+            <div class="row align-center mb-5">
+                <section class="post-container-user-profile">
+                    <p class="date-posted-post-user-profile">{{format_date post_date}}</p> 
+                    <hr>
+                    <a class="post-link" href="/post/{{id}}">
+                        <p class="content-post-user-profile">{{post_content}}</p>
+                    </a>
+                    <button type="button" class="btn-delete btn btn-dark" data-id="{{id}}" onclick ="deletePostButtonHandler (event)">Delete</button>
+                </section>
+
+                <section class="comments-container-user-profile">
+                    {{#each post.comments as |comment|}}
+                        {{> comment-details}}
+                    {{/each}}
+                </section>
+            </div>
+        {{/each}}
+    </div>
+
+</section>
 
 <script src="/js/dashboard.js"></script>

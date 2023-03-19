@@ -2,7 +2,7 @@
 const createCommentButtonHandler = async (event) => {
     event.preventDefault();
 
-    const comment_text = document.getElementById('comment-contemt').value.trim();
+    const comment_text = document.getElementById('comment-content').value.trim();
     const postId = location.pathname.split('/')[2];
 
     console.log(postId);
@@ -27,5 +27,5 @@ const createCommentButtonHandler = async (event) => {
 
 // handler for post comment btn
 document
-    .getElementById('btn-comment')
+    .getElementById('button-addon1')
     .addEventListener('click', createCommentButtonHandler);

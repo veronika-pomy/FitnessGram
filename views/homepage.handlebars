@@ -1,20 +1,22 @@
-{{#each posts as |post|}}
-<div class="row align-center mb-5">
-<section class="post-container">
-    <a class="post-link" href="/user/{{user_id}}">
-        <h4 class="user-name-post">By {{user.username}}</h4>
-    </a>
-    <a class="post-link" href="/post/{{id}}">
-        <p class="date-posted-post">{{format_date post_date}}</p> 
-        <p class="content-post">{{post_content}}</p>
-    </a>
-</section>
+<div class="homepage-card">
+    {{#each posts as |post|}}
+        <div class="row align-center mb-5 post-card">
+        <section class="post-container">
+            <h4 class="user-name-post">By <a class="post-link" href="/user/{{user_id}}">{{user.username}}</a></h4>
+            <p class="date-posted-post">{{format_date post_date}}</p> 
+            <hr>
+            <a class="post-link" href="/post/{{id}}">
+                <p class="content-post">{{post_content}}</p>
+            </a>
+        </section>
 
-<section class="comments-container">
-     {{#each post.comments as |comment|}}
-        {{> comment-details}}
+        <section class="comments-container">
+            {{#each post.comments as |comment|}}
+                {{> comment-details}}
+            {{/each}}
+        </section>
+
+        </div>
     {{/each}}
-</section>
-
 </div>
-{{/each}}
+
