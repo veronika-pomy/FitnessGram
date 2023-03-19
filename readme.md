@@ -101,6 +101,7 @@ This list includes resources used for the project.
 
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
 - [Best README Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
+- [Bootstrap](https://getbootstrap.com/)
 - [Chart.js](https://www.npmjs.com/package/chart.js?activeTab=readme)
 - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
 - [Emojipedia](https://emojipedia.org/)
@@ -114,5 +115,6 @@ This list includes resources used for the project.
 - [MySQL](https://www.mysql.com/)
 - [Sequelize](https://sequelize.org/)
 - [StackOverflow: Order by in nested eager loading in sequelize not working](https://stackoverflow.com/questions/40202540/order-by-in-nested-eager-loading-in-sequelize-not-working)
+- [StackOverflow: Changing the space between each item in Bootstrap navbar](https://stackoverflow.com/questions/20079782/changing-the-space-between-each-item-in-bootstrap-navbar)
 
 <p align="right">(<a href="#fitnessgram">BACK TO TOP</a>)</p>
