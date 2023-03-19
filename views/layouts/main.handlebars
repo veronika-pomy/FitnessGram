@@ -14,20 +14,24 @@
     <link rel="stylesheet" type="text/css" href="/css//style.css">
   </head>
   <body> 
-      <nav class="navbar sticky-top navbar-light bg-light">
+      
         <!-- conditionally renders login or logout links -->
           {{#if loggedIn}}
+          <nav class="navbar sticky-top navbar-light bg-light">
             <a class="navbar-brand" href="/">Home</a>
             <a href="/profile" class="navbar-brand">My Profile</a>
-            <button class="btn btn-outline-dark" type="button" id="logout">Logout</button>
+            <button class="btn logout-btn btn-outline-dark" type="button" id="logout">Logout</button>
+          </nav>
           {{else}}
+          <nav class="navbar-loggedout sticky-top navbar-light bg-light">
+            <h2 id="name-main">FitnessGram</h2>
             <div class="input-group">
               <div class="input-group-btn">
                   <a href="/login"><button class="btn login-btn btn-outline-dark" type="button" id="logout">Login</button></a>
               </div>
             </div>
+          </nav>
           {{/if}}
-      </nav>
 
       <main class="container container-fluid mt-5">
       <!-- render sub layout -->

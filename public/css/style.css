@@ -6,6 +6,8 @@
     --uranian-blue: #59559b67;
     --card-border: grey;
     --dark: black;
+    --text: white;
+    --footer-grey: #646565;
 }
 
 body {
@@ -22,8 +24,10 @@ body {
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 10px;
-    background-color: var(--backgroud-grey);
+    background-color: var(--footer-grey);
     margin-top: auto;
+    color: var(--text);
+
 }
 
 .container-welcome {
@@ -35,8 +39,34 @@ body {
 .navbar {
     padding-left: 30px;
     padding-right: 30px;
-    background-color: var(--backgroud-grey) !important;
+    background-color: var(--royal) !important;
+    color: white;
 }
+
+.navbar-loggedout {
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: var(--royal) !important;
+    display: flex;
+    align-items: center;
+    color: var(--text);
+}
+
+.navbar-light,
+.navbar-brand {
+    color: white !important;
+}
+
+.login-btn {
+    color: var(--text);
+    border: 1px solid var(--text);
+}
+
+.logout-btn {
+    color: var(--text);
+    border: 1px solid var(--text);
+}
+
 .input-group {
     justify-content: flex-end;
 }
@@ -144,7 +174,6 @@ input,
 .div-comment {
     margin: 22.3125px 89.2656px 0px 0px;
     padding: 0px 0px 0px 8%;
-
 }
 
 #btn-post {
@@ -184,4 +213,8 @@ input,
 .profile-username {
     border-right: 7px solid var(--card-border);
     height: 100%; 
+}
+
+#name-main {
+    text-align: center;
 }
