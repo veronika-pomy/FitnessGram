@@ -7,10 +7,16 @@
         </div>
     </div>
 
-    {{!-- Space for the chart --}}
-    
+    {{!-- Chart.js section --}}
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {{!-- Form to ceate a new post --}}
     <div class="post-comment-container">
-        {{!-- Form to ceate a new post --}}
+       
         <section class="create-post">
             <form class="form-post form-floating">
             <div class="div-post">
@@ -44,4 +50,5 @@
 
 </section>
 
+<script src="/js/barChart.js"></script>
 <script src="/js/dashboard.js"></script>

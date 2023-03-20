@@ -218,3 +218,9 @@ input,
 #name-main {
     text-align: center;
 }
+
+.btn-dark {
+    color: #fff;
+    background-color: var(--footer-grey);
+    border-color: var(--footer-grey);
+}
