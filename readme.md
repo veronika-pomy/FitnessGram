@@ -34,9 +34,9 @@ WHEN I see a post I no longer want on my profile
 
 THEN I can delete it
 
-WHEN I track my activity on the app\*\* - add here
+WHEN I view my calories actiity for the week
 
-THEN I can add graphs to my profile\*\* - add here
+THEN I can see a chart of my calories per day
 
 WHEN I choose to log out
 
