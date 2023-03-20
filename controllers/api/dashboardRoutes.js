@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { User, Posts, Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// POST loggedin users' calories
+
 // POST a new comment under specific post
 router.post('/post/:id', withAuth, async (req, res) => {
     try {

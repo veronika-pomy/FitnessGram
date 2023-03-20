@@ -1,0 +1,80 @@
+<section class="main-profile-container">
+
+    {{!-- This renders logged in user's posts and comments on the posts --}}
+    <div class="row name-section">
+        <div class="col-auto profile-username">
+            <h2 class="profile-user-name">{{userCalories.username}}</h2>
+            <h3></h3>
+        </div>
+    </div>
+
+    {{!-- Form to ceate a new post --}}
+    <div class="post-comment-container">
+
+        {{!-- Chart.js --}}
+        <div>
+            <canvas id="myChart">
+            </canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: [{
+                    label: 'My Calories Last Week',
+                    data: [ parseInt({{userCalories.calories.[0].calories}}), 
+                    parseInt({{userCalories.calories.[1].calories}}), 
+                    parseInt({{userCalories.calories.[2].calories}}), 
+                    parseInt({{userCalories.calories.[3].calories}}), 
+                    parseInt({{userCalories.calories.[4].calories}}), 
+                    parseInt({{userCalories.calories.[5].calories}}),
+                    parseInt({{userCalories.calories.[6].calories}}),
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'My Calories This Week',
+                    data: [ parseInt({{userCalories.calories.[7].calories}}), 
+                    parseInt({{userCalories.calories.[8].calories}}), 
+                    parseInt({{userCalories.calories.[9].calories}}), 
+                    parseInt({{userCalories.calories.[10].calories}}), 
+                    parseInt({{userCalories.calories.[11].calories}}), 
+                    parseInt({{userCalories.calories.[12].calories}}),
+                    parseInt({{userCalories.calories.[13].calories}}),
+                    ],
+                    borderWidth: 1
+                },
+                ]
+                },
+                options: {
+                scales: {
+                    y: {
+                    beginAtZero: true
+                    }
+                }
+                }
+            });
+        </script>
+            
+            <section class="create-post">
+                <form class="form-post form-floating">
+                <div class="div-post">
+                    <textarea rows = "5" cols = "50" class="form-input-post form-control" id="floatingTextarea2" type="text" name="post-content" placeholder="Enter your nutritional information here"></textarea>
+                </div>
+                <div class="div-post-btn">
+                    <button type="button" class="btn btn-dark" id="btn-post">Post My Calories</button>
+                </div>
+                </form>
+            </section>
+            
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/dashboard.js"></script>
