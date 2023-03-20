@@ -224,3 +224,11 @@ input,
     background-color: var(--footer-grey);
     border-color: var(--footer-grey);
 }
+
+.calories-chart {
+    margin-bottom: 5%;
+}
+
+textarea {
+    border: 5px solid grey !important;
+}
