@@ -2,7 +2,7 @@
 const postButtonHandler = async (event) => {
     event.preventDefault();
 
-    const post_content = document.querySelector("#post-content").value.trim();
+    const post_content = document.getElementById("floatingTextarea2").value.trim();
 
         const response = await fetch('/profile', {
             method: 'POST',

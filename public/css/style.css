@@ -1,18 +1,234 @@
+:root {
+    --vista: #758ecd;
+    --royal: #304fed;
+    --electric: rgb(0, 0, 227);
+    --backgroud-grey: rgb(229, 232, 235);
+    --uranian-blue: #59559b67;
+    --card-border: grey;
+    --dark: black;
+    --text: white;
+    --footer-grey: #646565;
+}
+
 body {
     font-family: 'Fira Sans Condensed', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.div-footer {
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    background-color: var(--footer-grey);
+    margin-top: auto;
+    color: var(--text);
+
 }
 
 .container-welcome {
-    margin-top: 20%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
 .navbar {
-    margin-left:30px;
-    margin-right:30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: var(--royal) !important;
+    color: white;
 }
+
+.navbar-loggedout {
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: var(--royal) !important;
+    display: flex;
+    align-items: center;
+    color: var(--text);
+}
+
+.navbar-light,
+.navbar-brand {
+    color: white !important;
+}
+
+.login-btn {
+    color: var(--text);
+    border: 1px solid var(--text);
+}
+
+.logout-btn {
+    color: var(--text);
+    border: 1px solid var(--text);
+}
+
 .input-group {
     justify-content: flex-end;
+}
+
+.card {
+    border-radius: 20%;
+}
+
+.card-body {
+    padding: 15vh 7vw 15vh 7vw;
+    border-radius: 20%;
+    overflow: hidden;
+}
+
+.signup-container :hover,
+.login-conainer :hover {
+    box-shadow: 2px 2px 2px var(--vista);
+}
+
+.btn-primary {
+    background-color: var(--royal);
+    border-color: var(--royal);
+    box-shadow: none !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--electric);
+    border-color: var(--royal);
+}
+
+.sign-up-label,
+label,
+.form-group,
+input,
+.signup-form,
+.login-form {
+    box-shadow: none !important;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+}
+
+.homepage-card {
+    margin: 10% 5%;
+    padding: 2%;
+}
+
+.post-container {
+    border: 2px groove var(--card-border);
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.comments-div {
+    margin-top: 2%;
+    padding-left: 5%;
+    border-left: 2px groove var(--card-border);
+    margin-left: 8%;
+    font-size: small;
+}
+
+.post-container-user-profile {
+    border: 2px groove var(--card-border);
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.user-name-post a,
+.user-name-comment a {
+    color: var(--royal);
+    font-style: italic;
+    text-decoration: none;
+}
+
+.post-border-bottom {
+    border-bottom: 1px soild grey;
+    width: 100%;
+}
+
+.date-posted-comment,
+.content-comment {
+    margin-bottom: 5px;
+}
+
+.comment-hr {
+    margin: 0;
+}
+
+.content-post {
+    margin-bottom: 10px;
+}
+
+.post-link {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.post-link:hover {
+    color: var(--royal);
+}
+
+.div-comment {
+    margin: 22.3125px 89.2656px 0px 0px;
+    padding: 0px 0px 0px 8%;
+}
+
+#btn-post {
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.row {
+    justify-content: space-around;
+}
+
+.main-profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.main-comment-contianer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.name-section {
+    margin-right: 10%;
+}
+
+.profile-user-name {
+    padding-top: 20%;
+    padding-right: 10%;
+}
+
+.post-comment-container {
+    margin-left: 9%;
+}
+
+.profile-username {
+    border-right: 7px solid var(--card-border);
+    height: 100%; 
+}
+
+#name-main {
+    text-align: center;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: var(--footer-grey);
+    border-color: var(--footer-grey);
+}
+
+.calories-chart {
+    margin-bottom: 5%;
+}
+
+textarea {
+    border: 5px solid grey !important;
 }

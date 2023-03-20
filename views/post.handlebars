@@ -1,9 +1,8 @@
 <div class="single-post-div">
     <section class="post-container">
-        <a class="post-link" href="/user/{{post.user.id}}">
-            <h4 class="user-name-post">By {{post.user.username}}</h4>
-        </a>
+            <h4 class="user-name-post">By <a class="post-link" href="/user/{{post.user.id}}">{{post.user.username}}</a></h4>
             <p class="date-posted-post">{{format_date post.post_date}}</p> 
+            <hr>
             <p class="content-post">{{post.post_content}}</p>
         </a>
     </section>
@@ -15,16 +14,13 @@
     </section>
 <div>
 
-{{!-- Section to add a comment to a ppst goes here  --}}
 <section class="leave-comment">
-    <form class="form-comment">
-      <div class="div-comment">
-        <input class="form-input-comment" type="text" id="comment-contemt" name="comment-name" placeholder="Leave me a comment!"/>
-      </div>
-      <div class="div-comment">
-        <button type="submit" id="btn-comment">Submit</button>
-      </div>
-    </form>
+  <form class="form-comment">
+    <div class="input-group mb-3 div-comment">
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Submit</button>
+      <input type="text" class="form-control" id="comment-content" placeholder="Leave your comment" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
+  </form>
 </section>
 
 <script src="/js/dashboardComment.js"></script>
