@@ -34,7 +34,7 @@ WHEN I see a post I no longer want on my profile
 
 THEN I can delete it
 
-WHEN I view my calories actiity for the week
+WHEN I view my calories activity for the week
 
 THEN I can see a chart of my calories per day
 
