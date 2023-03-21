@@ -76,6 +76,8 @@ This screenshot demonstrates the view of the homepage when a user is logged in.
 
 ![insert link](./public/media/signin.png)
 
+You can check out the app following [this link.](https://fitnessgram.herokuapp.com/login)
+
 ---
 
 ## Contributors
