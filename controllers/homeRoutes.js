@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Posts, Comments } = require('../models');
+const { User, Posts, Comments, Calories } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all users' posts with comments on them
@@ -69,6 +69,31 @@ router.get('/profile', withAuth, async (req, res) => {
 
     res.render('profile', {
       user,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET logged in users' calories
+router.get('/calories', withAuth, async (req, res) => {
+  try {
+  const userCurrentData = await User.findByPk(req.session.user_id, {
+    attributes: {
+        exclude: ['password']
+      },
+        include: [
+          { 
+            model: Calories }
+          ],
+    });
+
+    const userCalories = userCurrentData.get({ plain: true });
+
+    res.render('calories', {
+      userCalories,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {

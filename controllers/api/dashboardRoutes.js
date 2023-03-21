@@ -1,6 +1,22 @@
 const router = require('express').Router();
-const { User, Posts, Comments } = require('../../models');
+const { User, Posts, Comments, Calories } = require('../../models');
 const withAuth = require('../../utils/auth');
+
+// POST loggedin users' calories
+router.post('/calories', withAuth, async (req, res) => {
+  try { 
+    const newCalories = await Calories.create({
+        calories: req.body.calories,
+        user_id: req.session.user_id, 
+  });
+  
+  res.status(200).json(newCalories);
+
+  } catch (err) {
+    console.error(err);
+    res.status(400).json(err);
+  }
+});
 
 // POST a new comment under specific post
 router.post('/post/:id', withAuth, async (req, res) => {
