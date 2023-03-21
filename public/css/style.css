@@ -232,3 +232,20 @@ input,
 textarea {
     border: 5px solid grey !important;
 }
+
+.calories-profile-container {
+    width: 100%;
+}
+
+.form-input-calories {
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.name-section-calories {
+    margin-bottom: 5%;
+}
+
+#btn-post-calories {
+    margin-bottom: 5%;
+}
